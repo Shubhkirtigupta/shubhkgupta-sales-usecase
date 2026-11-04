@@ -1,0 +1,16 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+gold,gold,,gold,top_performing_products,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,products_silver,product_id,gold,top_performing_products,product_id,Direct,Passthrough from Silver products table; used as join key with sales data
+silver,products_silver,product_name,gold,top_performing_products,product_name,Direct,Passthrough product name from Silver products table
+silver,products_silver,category,gold,top_performing_products,category,Direct,Passthrough product category from Silver products table
+silver,products_silver,standard_price,gold,top_performing_products,standard_price,Direct,Passthrough standard price from Silver products table
+silver,sales_data_silver,transaction_date,gold,top_performing_products,transaction_date,Direct,Passthrough transaction date from Silver sales data; used to filter last quarter transactions
+silver,sales_data_silver,quantity,gold,top_performing_products,total_quantity_sold,Indirect,Sum of quantity sold per product in last quarter; filtered for positive quantities (exclude returns)
+silver,sales_data_silver,total_amount,gold,top_performing_products,total_revenue,Indirect,Sum of total_amount per product in last quarter; filtered for positive amounts (exclude returns)
+silver,sales_data_silver,unit_price,gold,top_performing_products,avg_unit_price,Indirect,Average unit price per product in last quarter transactions
+silver,sales_data_silver,product_id,gold,top_performing_products,product_id_sales,Direct,Join key: product_id from sales_data_silver to match with products_silver.product_id
+silver,sales_data_silver,customer_segment,gold,top_performing_products,customer_segment,Direct,Passthrough customer segment for performance analysis by segment
+silver,stores_silver,store_id,gold,top_performing_products,store_id,Direct,Join key: store_id from stores_silver to enrich with store location information
+silver,stores_silver,region,gold,top_performing_products,region,Direct,Passthrough store region for geographic performance analysis
+gold,top_performing_products,total_revenue,gold,top_performing_products,performance_rank,Indirect,Dense rank products by total_revenue in descending order to identify top performers in last quarter
+gold,top_performing_products,transaction_date,gold,top_performing_products,quarter_period,Indirect,Extract quarter and year from transaction_date; filter for last quarter (Q3 2024 or most recent quarter in dataset)

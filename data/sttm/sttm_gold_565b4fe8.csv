@@ -1,0 +1,16 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+,,,gold,best_performing_products,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,product_id,gold,best_performing_products,product_id,Direct,Passthrough product identifier
+silver,sales_data_silver,product_name,gold,best_performing_products,product_name,Direct,Passthrough product name
+silver,sales_data_silver,category,gold,best_performing_products,category,Direct,Passthrough product category
+silver,products_silver,standard_price,gold,best_performing_products,standard_price,Direct,Passthrough standard product price from products master table
+silver,sales_data_silver,quantity,gold,best_performing_products,quantity_sold,Indirect,"Sum of quantity sold, filtering for positive quantities (quantity > 0) to exclude returns"
+silver,sales_data_silver,total_amount,gold,best_performing_products,total_revenue,Indirect,Sum of total_amount for each product where quantity > 0 and transaction_date is in last quarter (Q3 2024: Jul-Sep or Q4 2024: Oct-Dec based on current date)
+silver,sales_data_silver,unit_price,gold,best_performing_products,average_unit_price,Indirect,Average of unit_price for each product across all transactions in last quarter
+silver,sales_data_silver,transaction_date,gold,best_performing_products,quarter,Indirect,"Extract quarter from transaction_date and filter for last quarter (relative to current date 2026-10-06, last quarter would be Q3 2026: Jul-Sep or based on available data)"
+silver,sales_data_silver,transaction_id,gold,best_performing_products,transaction_count,Indirect,Count of distinct transaction_id for each product in last quarter where quantity > 0
+silver,sales_data_silver,customer_segment,gold,best_performing_products,top_customer_segment,Indirect,Most frequent customer_segment purchasing each product in last quarter
+silver,sales_data_silver,store_id,gold,best_performing_products,store_count,Indirect,Count of distinct store_id where product was sold in last quarter
+silver,sales_data_silver,product_id,gold,best_performing_products,join_key_product,Indirect,JOIN sales_data_silver.product_id = products_silver.product_id to enrich with standard_price and validate product master data
+silver,sales_data_silver,transaction_date,gold,best_performing_products,filter_last_quarter,Indirect,"FILTER: transaction_date >= DATEADD(quarter, -1, CURRENT_DATE) AND transaction_date < CURRENT_DATE AND transaction_date IS NOT NULL to include only last quarter valid transactions"
+silver,sales_data_silver,quantity,gold,best_performing_products,filter_positive_sales,Indirect,FILTER: quantity > 0 to exclude returns and invalid transactions

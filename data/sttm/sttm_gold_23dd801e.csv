@@ -1,0 +1,11 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,,,gold,top_performing_products,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,products_silver,*,gold,top_performing_products,*,Direct,Passthrough all columns to keep complete product info for reporting
+silver,sales_data_silver,*,gold,top_performing_products,*,Direct,Passthrough all sales data columns to enable aggregation of sales quantity and amount
+silver,products_silver,product_id,gold,top_performing_products,product_id,Direct,Key column for joining with sales_data
+silver,sales_data_silver,product_id,gold,top_performing_products,product_id,Direct,Key column for joining with products
+silver,sales_data_silver,sales_quantity,gold,top_performing_products,sales_quantity,Direct,Quantity column needed to measure top performing products by sales volume
+silver,sales_data_silver,sales_amount,gold,top_performing_products,sales_amount,Direct,Monetary sales amount for aggregation and ranking
+silver,sales_data_silver,sales_date,gold,top_performing_products,sales_date,Direct,Date to filter last quarter sales data
+silver,products_silver,product_name,gold,top_performing_products,product_name,Direct,Product name for reporting top products
+silver,products_silver,category,gold,top_performing_products,category,Direct,Category useful for grouping or filtering in reports

@@ -1,0 +1,22 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+,,,gold,sales_analysis,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,transaction_id,gold,sales_analysis,transaction_id,Direct,Passthrough
+silver,sales_data_silver,transaction_date,gold,sales_analysis,transaction_date,Direct,Passthrough
+silver,sales_data_silver,store_id,gold,sales_analysis,store_id,Direct,Passthrough - join key to stores_silver
+silver,sales_data_silver,product_id,gold,sales_analysis,product_id,Direct,Passthrough - join key to products_silver
+silver,sales_data_silver,product_name,gold,sales_analysis,product_name,Direct,Passthrough
+silver,sales_data_silver,category,gold,sales_analysis,category,Direct,Passthrough
+silver,sales_data_silver,quantity,gold,sales_analysis,quantity,Direct,Passthrough
+silver,sales_data_silver,unit_price,gold,sales_analysis,unit_price,Direct,Passthrough
+silver,sales_data_silver,total_amount,gold,sales_analysis,total_amount,Direct,Passthrough - primary metric for highest sales calculation
+silver,sales_data_silver,customer_segment,gold,sales_analysis,customer_segment,Direct,Passthrough
+silver,sales_data_silver,payment_method,gold,sales_analysis,payment_method,Direct,Passthrough
+silver,stores_silver,store_id,gold,sales_analysis,store_id,Join,JOIN stores_silver ON sales_data_silver.store_id = stores_silver.store_id
+silver,stores_silver,store_name,gold,sales_analysis,store_name,Direct,Passthrough from stores_silver
+silver,stores_silver,region,gold,sales_analysis,region,Direct,Passthrough from stores_silver
+silver,stores_silver,city,gold,sales_analysis,city,Direct,Passthrough from stores_silver
+silver,stores_silver,state,gold,sales_analysis,state,Direct,Passthrough from stores_silver
+silver,products_silver,product_id,gold,sales_analysis,product_id,Join,JOIN products_silver ON sales_data_silver.product_id = products_silver.product_id
+silver,products_silver,standard_price,gold,sales_analysis,standard_price,Direct,Passthrough from products_silver
+silver,sales_data_silver,total_amount,gold,sales_analysis,is_valid_sale,Indirect,CASE WHEN transaction_date IS NOT NULL AND quantity > 0 THEN 1 ELSE 0 END - flag for valid sales transactions
+silver,sales_data_silver,total_amount,gold,sales_analysis,highest_sales_flag,Indirect,CASE WHEN total_amount = MAX(total_amount) OVER () THEN 1 ELSE 0 END - identifies the highest sales record

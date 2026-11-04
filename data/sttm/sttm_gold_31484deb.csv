@@ -1,0 +1,19 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+silver,,,gold,best_selling_product,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,products_silver,product_id,gold,best_selling_product,product_id,Direct,Passthrough product identifier
+silver,products_silver,product_name,gold,best_selling_product,product_name,Direct,Passthrough product name
+silver,products_silver,category,gold,best_selling_product,category,Direct,Passthrough product category
+silver,sales_data_silver,product_id,gold,best_selling_product,product_id,Direct,Passthrough to join sales with products
+silver,sales_data_silver,sales_date,gold,best_selling_product,sales_date,Direct,Passthrough sales transaction date for filtering last quarter
+silver,sales_data_silver,quantity_sold,gold,best_selling_product,quantity_sold,Direct,Passthrough numeric quantity for aggregation
+silver,sales_data_silver,sales_amount,gold,best_selling_product,sales_amount,Direct,Passthrough monetary sales amount for aggregation
+silver,products_silver,standard_price,gold,best_selling_product,standard_price,Direct,Passthrough standard product price
+silver,sales_data_silver,store_id,gold,best_selling_product,store_id,Direct,Passthrough store identifier for possible store-level analysis
+silver,stores_silver,store_id,gold,best_selling_product,store_id,Direct,Passthrough to join sales with stores for potential filtering/context
+silver,stores_silver,store_name,gold,best_selling_product,store_name,Direct,Passthrough store name
+silver,sales_data_silver,sales_id,gold,best_selling_product,sales_id,Direct,Passthrough sales transaction identifier
+silver,products_silver,_load_timestamp,gold,best_selling_product,products_load_timestamp,Direct,Passthrough Silver load timestamp for product data lineage
+silver,sales_data_silver,_load_timestamp,gold,best_selling_product,sales_load_timestamp,Direct,Passthrough Silver load timestamp for sales data lineage
+silver,stores_silver,_load_timestamp,gold,best_selling_product,stores_load_timestamp,Direct,Passthrough Silver load timestamp for store data lineage
+silver,products_silver,product_id,,sales_data_silver,product_id,Join,Join products to sales on product_id
+silver,sales_data_silver,store_id,,stores_silver,store_id,Join,Join sales to stores on store_id

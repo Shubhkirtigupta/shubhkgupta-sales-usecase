@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_copy,Copy source value as-is; primary key identifier
+landing,products,product_name,bronze,products,product_name,direct_copy,Copy source value as-is; human-readable product description
+landing,products,category,bronze,products,category,direct_copy,Copy source value as-is; product classification
+landing,products,standard_price,bronze,products,standard_price,direct_copy,Copy source value as-is; baseline unit price reference
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,preserve_nulls,Copy source value as-is; preserve 4.3% null values; unique transaction identifier
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,direct_copy,Copy source value as-is; preserve format inconsistency (MM/DD/YYYY and YYYY-MM-DD variants)
+landing,sales_data,store_id,bronze,sales_data,store_id,preserve_nulls,Copy source value as-is; preserve 2.69% null values; foreign key to stores
+landing,sales_data,product_id,bronze,sales_data,product_id,direct_copy,Copy source value as-is; foreign key to products
+landing,sales_data,product_name,bronze,sales_data,product_name,direct_copy,Copy source value as-is; denormalized product name from transaction
+landing,sales_data,category,bronze,sales_data,category,direct_copy,Copy source value as-is; denormalized product category; note 21 unique values vs 5 in products table
+landing,sales_data,quantity,bronze,sales_data,quantity,direct_copy,Copy source value as-is; preserve negative values representing returns or cancellations
+landing,sales_data,unit_price,bronze,sales_data,unit_price,direct_copy,Copy source value as-is; transactional unit price which may differ from standard_price due to discounts/promotions
+landing,sales_data,total_amount,bronze,sales_data,total_amount,direct_copy,Copy source value as-is; preserve negative values representing credits/refunds; calculated as quantity × unit_price
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,direct_copy,Copy source value as-is; customer classification or membership tier
+landing,sales_data,payment_method,bronze,sales_data,payment_method,direct_copy,Copy source value as-is; tender type used for transaction
+landing,stores,store_id,bronze,stores,store_id,direct_copy,Copy source value as-is; primary key identifier
+landing,stores,store_name,bronze,stores,store_name,direct_copy,Copy source value as-is; human-readable store location name
+landing,stores,region,bronze,stores,region,direct_copy,Copy source value as-is; geographic region grouping
+landing,stores,city,bronze,stores,city,direct_copy,Copy source value as-is; city of store location
+landing,stores,state,bronze,stores,state,direct_copy,Copy source value as-is; US state code of store location

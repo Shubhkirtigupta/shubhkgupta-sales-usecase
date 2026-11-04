@@ -1,0 +1,338 @@
+{
+  "files": [
+    "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\products.csv",
+    "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\sales_data.csv",
+    "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\stores.csv"
+  ],
+  "datasets": {
+    "products": {
+      "file": "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\products.csv",
+      "shape": {
+        "rows": 20,
+        "columns": 4
+      },
+      "columns": {
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "P001",
+            "P002",
+            "P003",
+            "P004",
+            "P005"
+          ]
+        },
+        "product_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "iPhone 15",
+            "Samsung Galaxy S24",
+            "AirPods Pro",
+            "Sony WH-1000XM5",
+            "Levi's 501 Jeans"
+          ]
+        },
+        "category": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "Electronics",
+            "Electronics",
+            "Electronics",
+            "Electronics",
+            "Apparel"
+          ]
+        },
+        "standard_price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 19,
+          "min": 12.99,
+          "max": 999.99,
+          "mean": 259.2405
+        }
+      }
+    },
+    "sales_data": {
+      "file": "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\sales_data.csv",
+      "shape": {
+        "rows": 186,
+        "columns": 11
+      },
+      "columns": {
+        "transaction_id": {
+          "dtype": "str",
+          "null_count": 8,
+          "null_pct": 4.3,
+          "unique_count": 166,
+          "sample_values": [
+            "TXN10046",
+            "TXN10078",
+            "RET10009",
+            "RET10004",
+            "TXN10077"
+          ]
+        },
+        "transaction_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 116,
+          "sample_values": [
+            "01/15/2024",
+            "2024-01-17",
+            "2024-03-03",
+            "2024-02-20",
+            "2024-01-05"
+          ]
+        },
+        "store_id": {
+          "dtype": "str",
+          "null_count": 5,
+          "null_pct": 2.69,
+          "unique_count": 10,
+          "sample_values": [
+            "S09",
+            "S10",
+            "S07",
+            "S06",
+            "S08"
+          ]
+        },
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "P001",
+            "P014",
+            "P012",
+            "P012",
+            "P016"
+          ]
+        },
+        "product_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "iPhone 15",
+            "TRX Resistance Bands",
+            "Nespresso Machine",
+            "Nespresso Machine",
+            "CamelBak Water Bottle"
+          ]
+        },
+        "category": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 21,
+          "sample_values": [
+            "Electronics",
+            "Sport",
+            "Home & Kitchen",
+            "Home & Kitchen",
+            "Sports"
+          ]
+        },
+        "quantity": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 11,
+          "min": -4.0,
+          "max": 8.0,
+          "mean": 3.9408602150537635
+        },
+        "unit_price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 172,
+          "min": 0.01,
+          "max": 9999.99,
+          "mean": 356.27005376344084
+        },
+        "total_amount": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 172,
+          "min": -1230.56,
+          "max": 9999.99,
+          "mean": 1215.24311827957
+        },
+        "customer_segment": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 16,
+          "sample_values": [
+            "Loyal",
+            "Premium",
+            "Loyal",
+            "Premium",
+            "Loyal"
+          ]
+        },
+        "payment_method": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "sample_values": [
+            "Apple Pay",
+            "PayPal",
+            "Apple Pay",
+            "Apple Pay",
+            "PayPal"
+          ]
+        }
+      }
+    },
+    "stores": {
+      "file": "C:\\Users\\hipachori\\Documents\\Accelerate_with_AI\\latest\\hipachori-UseCase03\\hipachori_Usecase03\\data\\landing\\stores.csv",
+      "shape": {
+        "rows": 10,
+        "columns": 5
+      },
+      "columns": {
+        "store_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ]
+        },
+        "store_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "Downtown Flagship",
+            "Westfield Mall",
+            "Harbor View",
+            "Peach Tree Center",
+            "Bayfront Store"
+          ]
+        },
+        "region": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "sample_values": [
+            "Northeast",
+            "Northeast",
+            "Northeast",
+            "Southeast",
+            "Southeast"
+          ]
+        },
+        "city": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "New York",
+            "Boston",
+            "Philadelphia",
+            "Atlanta",
+            "Miami"
+          ]
+        },
+        "state": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 9,
+          "sample_values": [
+            "NY",
+            "MA",
+            "PA",
+            "GA",
+            "FL"
+          ]
+        }
+      }
+    }
+  },
+  "analysis": {
+    "semantic_meanings": {
+      "products": {
+        "product_id": "Primary key - unique product identifier",
+        "product_name": "Product descriptive name",
+        "category": "Product category classification (5 distinct values)",
+        "standard_price": "Product standard/list price in USD"
+      },
+      "sales_data": {
+        "transaction_id": "Transaction identifier (4.3% nulls, possible duplicates for multi-line transactions)",
+        "transaction_date": "Transaction date (mixed formats: MM/DD/YYYY and YYYY-MM-DD)",
+        "store_id": "Foreign key to stores dimension (2.69% nulls - possible online/unknown channel)",
+        "product_id": "Foreign key to products dimension",
+        "product_name": "Denormalized product name (redundant with products table)",
+        "category": "Denormalized product category (21 unique - inconsistent with products.category)",
+        "quantity": "Transaction quantity (negative values represent returns)",
+        "unit_price": "Unit price at transaction time in USD (range $0.01-$9,999.99)",
+        "total_amount": "Total transaction amount in USD (quantity \u00d7 unit_price)",
+        "customer_segment": "Customer segment classification (16 unique - high cardinality suggests inconsistency)",
+        "payment_method": "Payment method used (4 distinct values)"
+      },
+      "stores": {
+        "store_id": "Primary key - unique store identifier",
+        "store_name": "Store descriptive name",
+        "region": "Geographic region (4 distinct: Northeast, Southeast, etc.)",
+        "city": "Store city location",
+        "state": "Store state code (9 unique states)"
+      }
+    },
+    "join_keys": [
+      {
+        "left_dataset": "sales_data",
+        "left_column": "product_id",
+        "right_dataset": "products",
+        "right_column": "product_id",
+        "confidence": "high"
+      },
+      {
+        "left_dataset": "sales_data",
+        "left_column": "store_id",
+        "right_dataset": "stores",
+        "right_column": "store_id",
+        "confidence": "high"
+      }
+    ],
+    "quality_notes": [
+      "sales_data.transaction_id has 8 null values (4.3%) - investigate data collection process",
+      "sales_data.store_id has 5 null values (2.69%) - may represent online/unknown channel sales",
+      "sales_data.transaction_date has mixed date formats (MM/DD/YYYY and YYYY-MM-DD) - requires standardization in Bronze layer",
+      "Category mismatch: sales_data.category has 21 unique values vs products.category with 5 - indicates spelling variants (e.g., 'Sport' vs 'Sports') or data entry inconsistencies",
+      "sales_data.customer_segment has 16 unique values - unexpectedly high cardinality suggests inconsistent naming or typos",
+      "sales_data.unit_price has extreme value ($9,999.99) - validate as legitimate or potential test/error data",
+      "Negative quantities in sales_data correctly represent product returns (min: -4, max: 8)",
+      "sales_data denormalizes product_name and category from products dimension - creates data redundancy and risk of inconsistency",
+      "products.product_id and stores.store_id show perfect uniqueness (20/20 and 10/10) - clean dimension keys",
+      "sales_data has 166 unique transaction_ids for 178 non-null values - investigate potential duplicate transaction IDs for multi-item orders"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products_sttm,product_id,identity,Direct copy of product_id from source
+landing,products,product_name,bronze,products_sttm,product_name,identity,Direct copy of product_name from source
+landing,products,category,bronze,products_sttm,category,identity,Direct copy of category from source
+landing,products,standard_price,bronze,products_sttm,standard_price,identity,Direct copy of standard_price from source
+landing,sales_data,transaction_id,bronze,sales_data_sttm,transaction_id,identity,Direct copy of transaction_id from source
+landing,sales_data,transaction_date,bronze,sales_data_sttm,transaction_date,identity,"Direct copy of transaction_date from source, mixed string formats preserved"
+landing,sales_data,store_id,bronze,sales_data_sttm,store_id,identity,"Direct copy of store_id from source, nulls preserved"
+landing,sales_data,product_id,bronze,sales_data_sttm,product_id,identity,Direct copy of product_id from source
+landing,sales_data,product_name,bronze,sales_data_sttm,product_name,identity,Direct copy of product_name from source
+landing,sales_data,category,bronze,sales_data_sttm,category,identity,Direct copy of category from source
+landing,sales_data,quantity,bronze,sales_data_sttm,quantity,identity,"Direct copy of quantity from source, negative values preserved"
+landing,sales_data,unit_price,bronze,sales_data_sttm,unit_price,identity,Direct copy of unit_price from source
+landing,sales_data,total_amount,bronze,sales_data_sttm,total_amount,identity,"Direct copy of total_amount from source, negative values preserved"
+landing,sales_data,customer_segment,bronze,sales_data_sttm,customer_segment,identity,Direct copy of customer_segment from source
+landing,sales_data,payment_method,bronze,sales_data_sttm,payment_method,identity,Direct copy of payment_method from source
+landing,stores,store_id,bronze,stores_sttm,store_id,identity,Direct copy of store_id from source
+landing,stores,store_name,bronze,stores_sttm,store_name,identity,Direct copy of store_name from source
+landing,stores,region,bronze,stores_sttm,region,identity,Direct copy of region from source
+landing,stores,city,bronze,stores_sttm,city,identity,Direct copy of city from source
+landing,stores,state,bronze,stores_sttm,state,identity,Direct copy of state from source

@@ -1,0 +1,68 @@
+GitHub Token Integration Change Log
+===================================
+
+Purpose
+-------
+Enable the pipeline to use GitHub Models (token-based auth) as an LLM provider
+across orchestrator and all specialist agents.
+
+Flow of changes
+---------------
+1) Config layer was updated to introduce GitHub provider settings.
+2) Dependency layer was updated to support OpenAI-compatible GitHub Models calls.
+3) Orchestrator LLM factory was updated to route to GitHub Models.
+4) Each specialist agent LLM factory was updated so every phase can use the same provider.
+
+Detailed file-by-file changes
+-----------------------------
+
+1) core/config.py
+
+- Added explicit provider selection:
+  LLM_PROVIDER = "github"
+  GITHUB_MODEL = os.getenv("GITHUB_MODEL")
+  GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+
+Why this matters:
+- Centralizes provider switch to GitHub mode.
+- Makes all downstream components read token/model from environment.
+
+2) requirements.txt: Add below dependency
+
+'''
+langchain-openai>=0.1.0
+'''
+
+Why this matters:
+- ChatOpenAI client is required for OpenAI-compatible endpoint usage.
+
+3) agents/orchestrator.py
+agents/profiler.py
+agents/sttm_generator.py
+agents/bronze_agent.py
+agents/silver_agent.py
+agents/gold_agent.py
+agents/reporter.py
+
+Add below import line to above agents script:
+
+'''
+from core.config import LLM_PROVIDER, GROQ_API_KEY, GROQ_MODEL, GOOGLE_API_KEY, GEMINI_MODEL,GITHUB_MODEL, GITHUB_TOKEN
+'''
+
+Modify _make_llm() function as:
+
+'''
+def _make_llm():
+    print("LLM_PROVIDER:", LLM_PROVIDER)
+    if LLM_PROVIDER == "github":
+        from langchain_openai import ChatOpenAI
+        model_name = GITHUB_MODEL.split("/")[-1] if "/" in (GITHUB_MODEL or "") else GITHUB_MODEL
+        return ChatOpenAI(api_key=GITHUB_TOKEN, base_url="https://models.inference.ai.azure.com", model=model_name)
+    if LLM_PROVIDER == "groq":
+        from langchain_groq import ChatGroq
+        return ChatGroq(api_key=GROQ_API_KEY, model=GROQ_MODEL)
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    return ChatGoogleGenerativeAI(api_key=GOOGLE_API_KEY, model=GEMINI_MODEL)
+'''
+

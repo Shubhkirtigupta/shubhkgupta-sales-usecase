@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,DIRECT,CAST(product_id AS STRING)
+landing,products,product_name,bronze,products,product_name,DIRECT,CAST(product_name AS STRING)
+landing,products,category,bronze,products,category,DIRECT,CAST(category AS STRING)
+landing,products,standard_price,bronze,products,standard_price,DIRECT,"CAST(standard_price AS DECIMAL(10,2))"
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,DIRECT,CAST(transaction_id AS STRING)
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,DIRECT,CAST(transaction_date AS STRING)
+landing,sales_data,store_id,bronze,sales_data,store_id,DIRECT,CAST(store_id AS STRING)
+landing,sales_data,product_id,bronze,sales_data,product_id,DIRECT,CAST(product_id AS STRING)
+landing,sales_data,product_name,bronze,sales_data,product_name,DIRECT,CAST(product_name AS STRING)
+landing,sales_data,category,bronze,sales_data,category,DIRECT,CAST(category AS STRING)
+landing,sales_data,quantity,bronze,sales_data,quantity,DIRECT,CAST(quantity AS INTEGER)
+landing,sales_data,unit_price,bronze,sales_data,unit_price,DIRECT,"CAST(unit_price AS DECIMAL(10,2))"
+landing,sales_data,total_amount,bronze,sales_data,total_amount,DIRECT,"CAST(total_amount AS DECIMAL(10,2))"
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,DIRECT,CAST(customer_segment AS STRING)
+landing,sales_data,payment_method,bronze,sales_data,payment_method,DIRECT,CAST(payment_method AS STRING)
+landing,stores,store_id,bronze,stores,store_id,DIRECT,CAST(store_id AS STRING)
+landing,stores,store_name,bronze,stores,store_name,DIRECT,CAST(store_name AS STRING)
+landing,stores,region,bronze,stores,region,DIRECT,CAST(region AS STRING)
+landing,stores,city,bronze,stores,city,DIRECT,CAST(city AS STRING)
+landing,stores,state,bronze,stores,state,DIRECT,CAST(state AS STRING)
